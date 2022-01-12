@@ -1,5 +1,7 @@
 # Aquarius
 
+![轮子](https://img.shields.io/badge/wheels-%E8%BD%AE%E5%AD%90-red)
+
 一个注册中心轮子
 
 # 你能了解到
