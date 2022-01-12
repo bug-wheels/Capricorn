@@ -2,18 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>capricorn</artifactId>
+    <groupId>com.github.bug-wheels</groupId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.bug-wheels</groupId>
-  <artifactId>capricorn</artifactId>
-  <packaging>pom</packaging>
-  <version>0.1-SNAPSHOT</version>
-  <modules>
-    <module>capricorn-commons</module>
-    <module>capricorn-server</module>
-    <module>spring-cloud-starter-capricorn-discovery-client</module>
-    <module>spring-cloud-starter-capricorn-discovery-server</module>
-  </modules>
+  <artifactId>capricorn-server</artifactId>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
