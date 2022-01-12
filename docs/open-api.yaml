@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Capricorn API
+  description: |
+    Capricorn 服务发现提供 API。 |
+    不保证可用
+  version: "0.1"
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: API Support
+    url: https://github.com/bug-wheels/Capricorn
+    email: zyndev@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+tags:
+  - name: instance
+    description: 服务注册和发现
+servers:
+  - url: 'http://127.0.0.1:23456'
+
+paths:
+  /api/v1/dc/ns/instance:
+    post:
+      tags:
+        - instance
+      summary: 注册一个新的服务，如果服务已经存在则替换
+      description: ""
+      requestBody:
+        description: 实例信息
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Instance'
+      responses:
+        "200":
+          description: "Success"
+    get:
+      tags:
+        - instance
+      summary: 查询实例信息
+      description: ""
+      responses:
+        "200":
+          description: "Success"
+  /api/v1/dc/ns/instance/{instance}:
+    put:
+      tags:
+        - instance
+      summary: 发送实例心跳包
+      description: ""
+      parameters:
+        - name: instance
+          in: path
+          description: 注册服务时返回的 id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Success"
+    delete:
+      tags:
+        - instance
+      summary: 删除一个实例信息
+      description: ""
+      parameters:
+        - name: instance
+          in: path
+          description: 注册服务时返回的 id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Success"
+
+components:
+  schemas:
+    Instance:
+      type: object
+      required:
+        - instanceId
+        - serviceName
+        - host
+      properties:
+        instanceId:
+          type: string
+          description: 服务实例Id, 需全局唯一
+        serviceId:
+          type: string
+          description: 服务 id
+        host:
+          type: string
+          description: ip 或者域名
+          example: 127.0.0.1
+        port:
+          type: integer
+          description: 端口号
+          example: 8080
+          default: 80
+        metadata:
+          type: object
+          properties: { }

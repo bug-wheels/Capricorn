@@ -15,3 +15,16 @@
 - 使用其作为 Apache Thrift 的注册中心
 - 使用其作为 gRPC 的注册中心
 - 一点点单元测试技术
+
+# 开发文档
+
+以下是提供的一些通用 HTTP 接口操作。 
+
+| 操作             | **请求**                                   | **说明**                                 |
+| ---------------- | ------------------------------------------ | ---------------------------------------- |
+| 注册一个服务实例 | POST /api/v1/dc/ns/instance                | 返回 200 说明成功                        |
+| 剔除一个服务实例 | DELETE /api/v1/dc/ns/instance/{instanceId} | 返回 200 说明成功                        |
+| 发送实例心跳包   | PUT /api/v1/dc/ns/instance/{instanceId}    | 返回 200 说明成功，返回 404 则实例不存在 |
+| 查询实例信息     | GET /api/v1/dc/ns/instance                 | 返回 200 说明成功                        |
+
+具体接口文档信息见 docs/open-api.yaml，IDEA 和 VSCode 可以安装 OpenAPI 预览插件，或者复制到 https://editor.swagger.io/ 查看
