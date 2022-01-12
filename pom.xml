@@ -26,6 +26,17 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>com.github.bug-wheels</groupId>
+        <artifactId>capricorn-commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.bug-wheels</groupId>
+        <artifactId>capricorn-server</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
       <dependency>
         <groupId>com.github.bug-wheels</groupId>
