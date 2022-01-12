@@ -18,6 +18,8 @@
 
 # 开发文档
 
+## 接口信息
+
 以下是提供的一些通用 HTTP 接口操作。 
 
 | 操作             | **请求**                                   | **说明**                                 |
@@ -28,3 +30,17 @@
 | 查询实例信息     | GET /api/v1/dc/ns/instance                 | 返回 200 说明成功                        |
 
 具体接口文档信息见 docs/open-api.yaml，IDEA 和 VSCode 可以安装 OpenAPI 预览插件，或者复制到 https://editor.swagger.io/ 查看
+
+
+
+## 预期项目结构
+
+- capricorn-commons
+- capricorn-
+- capricorn-
+- capricorn-
+- capricorn-
+- capricorn-
+- capricorn-
+- capricorn-
+
