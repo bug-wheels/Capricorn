@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: capricorn-server-example
+
+server:
+  port: 23333

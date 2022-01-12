@@ -13,11 +13,42 @@
     <module>capricorn-server</module>
     <module>spring-cloud-starter-capricorn-discovery-client</module>
     <module>spring-cloud-starter-capricorn-discovery-server</module>
+    <module>capricorn-example</module>
   </modules>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
+
+    <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+    <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>com.github.bug-wheels</groupId>
+        <artifactId>spring-cloud-starter-capricorn-discovery-server</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 </project>
