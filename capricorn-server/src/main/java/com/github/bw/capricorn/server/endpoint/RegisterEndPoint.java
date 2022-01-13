@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -64,7 +65,8 @@ public class RegisterEndPoint {
    * 查询实例信息
    */
   @GetMapping
-  public List<DefaultServiceInstance> instances(String dc, String ns, String serviceId) {
+  public List<DefaultServiceInstance> instances(@RequestParam String dc, @RequestParam String ns,
+      @RequestParam String serviceId) {
     DefaultServiceInstance instanceInfo = new DefaultServiceInstance();
     instanceInfo.setInstanceId(UUID.randomUUID().toString());
     instanceInfo.setInstanceId(serviceId);
