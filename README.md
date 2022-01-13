@@ -37,11 +37,9 @@
 ## 预期项目结构
 
 - capricorn-commons
-- capricorn-
-- capricorn-
-- capricorn-
-- capricorn-
-- capricorn-
-- capricorn-
-- capricorn-
+- capricorn-example 示例
+- capricorn-server 服务，包括服务信息的 curd
+- capricorn-client 客户端，主要用来和注册中心进行通信交互
+- spring-cloud-starter-capricorn-discovery-server server 的 starter
+- spring-cloud-starter-capricorn-discovery-client client 的 starter
 
