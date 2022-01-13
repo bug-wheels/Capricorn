@@ -4,13 +4,13 @@ public class Registration {
 
   private String datacenter;
   private String namespace;
-  private ServiceInstance serviceInstance;
+  private DefaultServiceInstance serviceInstance;
 
   public Registration() {
   }
 
   public Registration(String datacenter, String namespace,
-      ServiceInstance serviceInstance) {
+      DefaultServiceInstance serviceInstance) {
     this.datacenter = datacenter;
     this.namespace = namespace;
     this.serviceInstance = serviceInstance;
@@ -36,7 +36,7 @@ public class Registration {
     return serviceInstance;
   }
 
-  public void setServiceInstance(ServiceInstance serviceInstance) {
+  public void setServiceInstance(DefaultServiceInstance serviceInstance) {
     this.serviceInstance = serviceInstance;
   }
 }
