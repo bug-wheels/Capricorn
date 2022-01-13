@@ -1,6 +1,8 @@
 spring:
   application:
     name: capricorn-server-example
+  profiles:
+    active: mysql
 
 server:
   port: 23333

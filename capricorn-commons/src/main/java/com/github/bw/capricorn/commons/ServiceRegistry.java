@@ -1,13 +1,13 @@
 package com.github.bw.capricorn.commons;
 
-public interface ServiceRegistry<R extends ServiceInstance> {
+public interface ServiceRegistry<R extends Registration> {
 
-	void register(R serviceInstance);
+	void register(R registration);
 
-	void deregister(R serviceInstance);
+	void deregister(R registration);
 
-	void setStatus(R serviceInstance, String status);
+	void setStatus(R registration, String status);
 
-	<T> T getStatus(R serviceInstance);
+	<T> T getStatus(R registration);
 
 }

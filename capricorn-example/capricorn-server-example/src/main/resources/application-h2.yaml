@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:capricorn;MODE=MYSQL;DB_CLOSE_DELAY=-1
+    schema: classpath:schema-h2.sql
+    data: classpath:data-h2.sql

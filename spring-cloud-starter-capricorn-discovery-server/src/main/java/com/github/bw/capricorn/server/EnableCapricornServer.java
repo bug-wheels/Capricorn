@@ -1,6 +1,8 @@
 package com.github.bw.capricorn.server;
 
-import com.github.bw.capricorn.server.config.EndPointAutoConfig;
+import com.github.bw.capricorn.server.config.DataSourceTransactionManagerAutoConfiguration;
+import com.github.bw.capricorn.server.config.EndPointAutoConfiguration;
+import com.github.bw.capricorn.server.config.ServerServiceRegistryAutoConfiguration;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,7 +13,8 @@ import org.springframework.context.annotation.Import;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import({EndPointAutoConfig.class})
+@Import({DataSourceTransactionManagerAutoConfiguration.class, ServerServiceRegistryAutoConfiguration.class,
+    EndPointAutoConfiguration.class})
 public @interface EnableCapricornServer {
 
 }

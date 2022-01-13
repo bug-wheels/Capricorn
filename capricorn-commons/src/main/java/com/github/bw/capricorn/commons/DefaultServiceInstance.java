@@ -19,6 +19,11 @@ public class DefaultServiceInstance implements ServiceInstance {
     metadata = new HashMap<>();
   }
 
+  public DefaultServiceInstance(String instanceId) {
+    this.instanceId = instanceId;
+    metadata = new HashMap<>();
+  }
+
   @Override
   public Map<String, String> getMetadata() {
     return metadata;
