@@ -4,16 +4,16 @@ import java.util.Map;
 
 public interface ServiceInstance {
 
-	default String getInstanceId() {
-		return null;
-	}
+  default String getInstanceId() {
+    return null;
+  }
 
-	String getServiceId();
+  String getServiceId();
 
-	String getHost();
+  String getHost();
 
-	int getPort();
+  int getPort();
 
-	Map<String, String> getMetadata();
+  Map<String, String> getMetadata();
 
 }

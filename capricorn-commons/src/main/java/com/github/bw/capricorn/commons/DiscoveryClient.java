@@ -9,6 +9,7 @@ public interface DiscoveryClient {
 
   /**
    * 根据 serviceId 查询出所有的实例
+   *
    * @param serviceId 服务 id
    */
   List<ServiceInstance> getInstances(String serviceId);

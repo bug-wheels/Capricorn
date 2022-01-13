@@ -14,6 +14,7 @@
     <module>spring-cloud-starter-capricorn-discovery-client</module>
     <module>spring-cloud-starter-capricorn-discovery-server</module>
     <module>capricorn-example</module>
+    <module>capricorn-client</module>
   </modules>
 
   <properties>
