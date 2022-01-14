@@ -4,6 +4,7 @@
 
 ![轮子](https://img.shields.io/badge/wheels-%E8%BD%AE%E5%AD%90-red)
 [![Java CI with Maven](https://github.com/bug-wheels/Capricorn/actions/workflows/maven.yml/badge.svg)](https://github.com/bug-wheels/Capricorn/actions/workflows/maven.yml)
+![GitHub](https://img.shields.io/github/license/bug-wheels/Capricorn)
 
 **一个注册中心轮子**
 
