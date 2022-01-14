@@ -19,7 +19,7 @@ public class CapricornServerPropertiesAutoConfiguration {
 
   @Bean
   @ConditionalOnProperty(value = "capricorn.banner", matchIfMissing = true)
-  public Banner eurekaServerMarkerBean() {
+  public Banner capricornServerBeanBanner() {
 
     Banner banner = new Banner();
     try {
