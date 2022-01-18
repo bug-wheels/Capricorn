@@ -64,4 +64,8 @@ public class DefaultServiceInstance implements ServiceInstance {
   public void setPort(int port) {
     this.port = port;
   }
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
 }

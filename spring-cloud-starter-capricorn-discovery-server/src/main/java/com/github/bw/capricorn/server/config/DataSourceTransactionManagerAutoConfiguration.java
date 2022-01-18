@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -26,10 +25,10 @@ public class DataSourceTransactionManagerAutoConfiguration {
     return new DataSourceTransactionManager(dataSource);
   }
 
-  @Bean
-  @ConditionalOnMissingBean
-  NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
-    return new NamedParameterJdbcTemplate(dataSource);
-  }
+//  @Bean
+//  @ConditionalOnMissingBean
+//  NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+//    return new NamedParameterJdbcTemplate(dataSource);
+//  }
 
 }

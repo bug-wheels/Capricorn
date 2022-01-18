@@ -1,10 +1,12 @@
 package com.github.bw.capricorn.server.endpoint;
 
 import com.github.bw.capricorn.commons.Registration;
-import com.github.bw.capricorn.commons.ServiceRegistry;
+import com.github.bw.capricorn.commons.ServiceInstance;
+import com.github.bw.capricorn.commons.response.InstanceHealthStatus;
+import java.util.List;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-public class JdbcServerServiceRegistry implements ServiceRegistry<Registration> {
+public class JdbcServerServiceRegistry implements DiscoveryRegistry<Registration> {
 
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -30,6 +32,12 @@ public class JdbcServerServiceRegistry implements ServiceRegistry<Registration> 
 
   @Override
   public <T> T getStatus(Registration registration) {
+    return null;
+  }
+
+  @Override
+  public List<ServiceInstance> instances(String dc, String ns, String serviceId,
+      InstanceHealthStatus instanceHealthStatus) {
     return null;
   }
 }

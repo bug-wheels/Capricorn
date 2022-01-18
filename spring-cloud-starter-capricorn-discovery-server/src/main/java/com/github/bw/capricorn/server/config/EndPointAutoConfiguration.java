@@ -1,6 +1,6 @@
 package com.github.bw.capricorn.server.config;
 
-import com.github.bw.capricorn.server.endpoint.JdbcServerServiceRegistry;
+import com.github.bw.capricorn.server.endpoint.MyBatisServerServiceRegistry;
 import com.github.bw.capricorn.server.endpoint.RegisterEndPoint;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -15,7 +15,7 @@ public class EndPointAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public RegisterEndPoint registerEndPoint(JdbcServerServiceRegistry jdbcServerServiceRegistry) {
-    return new RegisterEndPoint(jdbcServerServiceRegistry);
+  public RegisterEndPoint registerEndPoint(MyBatisServerServiceRegistry myBatisServerServiceRegistry) {
+    return new RegisterEndPoint(myBatisServerServiceRegistry);
   }
 }
