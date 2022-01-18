@@ -42,3 +42,18 @@
 - spring-cloud-starter-capricorn-discovery-server server 的 starter
 - spring-cloud-starter-capricorn-discovery-client client 的 starter
 
+## 一、大体设计
+
+### 用到技术
+
+- 使用 OpenAPI 来定义接口，接口文件在 docs/api.yaml
+-
+
+## 二、相关技术点简介
+
+### 什么是 OpenAPI / Swagger
+
+OpenAPI 规范（OAS）是一种通用的、和编程语言无关的 API 描述规范，使人类和计算机都可以发现和理解服务的功能，而无需访问源代码、文档或针对接口进行嗅探。 正确定义后，使用者可以使用最少的实现逻辑来理解远程服务并与之交互。
+
+OpenAPI 始于 Swagger 规范，Swagger 规范已于 2015 年捐赠给 Linux 基金会后改名为 OpenAPI，并定义最新的规范为 OpenAPI 3.0。
+
