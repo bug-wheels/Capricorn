@@ -54,7 +54,33 @@ public class MyBatisServerServiceRegistry implements DiscoveryRegistry<Registrat
 
   @Override
   public void deregister(Registration registration) {
+    try (SqlSession session = sqlSessionFactory.openSession()) {
+      DatacenterMapper datacenterMapper = session.getMapper(DatacenterMapper.class);
+      NamespaceMapper namespaceMapper = session.getMapper(NamespaceMapper.class);
+      ServiceInstanceMapper serviceInstanceMapper = session.getMapper(ServiceInstanceMapper.class);
 
+      Optional<Datacenter> datacenter = datacenterMapper.selectOne(
+          c -> c.where(DatacenterDynamicSqlSupport.name, SqlBuilder.isEqualTo(registration.getDatacenter())));
+      Preconditions.checkArgument(datacenter.isPresent(), "datacenter 不存在");
+
+      int dcId = datacenter.get().getId();
+
+      Optional<Namespace> namespace = namespaceMapper.selectOne(
+          c -> c.where(NamespaceDynamicSqlSupport.name, SqlBuilder.isEqualTo(registration.getNamespace()),
+              SqlBuilder.and(NamespaceDynamicSqlSupport.dcId, SqlBuilder.isEqualTo(dcId))));
+      Preconditions.checkArgument(namespace.isPresent(), "namespace 不存在");
+
+      int nsId = namespace.get().getId();
+
+      serviceInstanceMapper.delete(c -> c.where(ServiceInstanceDynamicSqlSupport.dcId, SqlBuilder.isEqualTo(dcId),
+          SqlBuilder.and(ServiceInstanceDynamicSqlSupport.nsId, SqlBuilder.isEqualTo(nsId)),
+          SqlBuilder.and(ServiceInstanceDynamicSqlSupport.instanceId,
+              SqlBuilder.isEqualTo(registration.getServiceInstance().getInstanceId()))));
+      session.commit();
+    } catch (Exception e) {
+      logger.error("剔除服务信息异常 Registration:{}", registration, e);
+      throw e;
+    }
   }
 
   @Override

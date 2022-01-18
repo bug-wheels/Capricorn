@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <logger name="org.apache.http" level="ERROR"/>
+  <logger name="org.mongodb.driver" level="ERROR"/>
+  <logger name="org.springframework" level="ERROR"/>
+  <logger name="org.hibernate" level="ERROR"/>
+  <logger name="com.netflix.loadbalancer" level="ERROR"/>
+  <logger name="io.lettuce" level="ERROR"/>
+  <logger name="io.netty" level="ERROR"/>
+  <logger name="com.zaxxer.hikari" level="ERROR"/>
+  <logger name="org.apache.kafka" level="WARN"/>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level [%thread] [%X{LOG_NO}] %logger{100} [%file:%line] %msg%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+  <root level="debug">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>
