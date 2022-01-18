@@ -67,6 +67,18 @@ public class MyBatisServerServiceRegistry implements DiscoveryRegistry<Registrat
     return null;
   }
 
+  /**
+   * 查询实例
+   * <p>
+   * 返回从数据库查询到的数据
+   * <p>
+   * PS: 这个其实一条 SQL 就完成了，不过不太喜欢写 SQL, 就写成了这个形式，写法还凑合
+   *
+   * @param dc                   数据中心
+   * @param ns                   ns
+   * @param serviceId            服务名
+   * @param instanceHealthStatus 健康状态
+   */
   @Override
   public List<ServiceInstance> instances(String dc, String ns, String serviceId,
       InstanceHealthStatus instanceHealthStatus) {
