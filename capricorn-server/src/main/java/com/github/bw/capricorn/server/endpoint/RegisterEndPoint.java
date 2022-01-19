@@ -58,7 +58,7 @@ public class RegisterEndPoint {
   public CommonResponse heartbeat(@PathVariable String dc, @PathVariable String ns,
       @PathVariable String instanceId) {
     Registration registration = new Registration(dc, ns, new DefaultServiceInstance(instanceId));
-    discoveryRegistry.setStatus(registration, "up");
+    discoveryRegistry.setStatus(registration, InstanceHealthStatus.UP);
     return new CommonResponse();
   }
 

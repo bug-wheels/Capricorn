@@ -26,7 +26,7 @@ public class JdbcServerServiceRegistry implements DiscoveryRegistry<Registration
   }
 
   @Override
-  public void setStatus(Registration registration, String status) {
+  public void setStatus(Registration registration, InstanceHealthStatus status) {
 
   }
 

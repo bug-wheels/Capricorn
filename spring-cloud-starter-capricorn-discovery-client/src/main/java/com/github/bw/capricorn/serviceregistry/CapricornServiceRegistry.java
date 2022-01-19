@@ -9,7 +9,7 @@ import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
  */
 public class CapricornServiceRegistry implements ServiceRegistry<CapricornRegistration> {
 
-	private static Logger logger = LoggerFactory.getLogger(CapricornServiceRegistry.class);
+	private static final Logger logger = LoggerFactory.getLogger(CapricornServiceRegistry.class);
 
 	@Override
 	public void register(CapricornRegistration registration) {
