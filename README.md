@@ -2,13 +2,9 @@
 
 > 摩羯座是十二星座中最有耐心，行事最小心、也是最善良的星座。他们做事脚踏实地，也比较固执，不达目的是不会放手的。他们的忍耐力也是出奇的强大，同时也非常勤奋。他们心中总是背负着很多的责任感，但往往又很没有安全感，不会完全地相信别人。
 
-<p align="center">
-
 ![轮子](https://img.shields.io/badge/wheels-%E8%BD%AE%E5%AD%90-red)
 [![Java CI with Maven](https://github.com/bug-wheels/Capricorn/actions/workflows/maven.yml/badge.svg)](https://github.com/bug-wheels/Capricorn/actions/workflows/maven.yml)
 ![GitHub](https://img.shields.io/github/license/bug-wheels/Capricorn)
-
-</p>
 
 **一个注册中心轮子**
 

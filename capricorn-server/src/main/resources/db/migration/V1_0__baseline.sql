@@ -23,7 +23,7 @@ create table service_instance (
   instance_id varchar(64) unique,
   service_id varchar(64),
   host varchar(15) not null,
-  port SMALLINT unsigned not null,
+  port int unsigned not null,
   metadata varchar(100) null comment '描述',
   last_heartbeat_time datetime default current_timestamp comment '最后心跳时间',
   create_time datetime default current_timestamp comment '创建时间',

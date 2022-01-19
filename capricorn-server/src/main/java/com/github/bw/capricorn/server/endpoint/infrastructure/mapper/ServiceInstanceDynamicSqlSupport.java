@@ -30,7 +30,7 @@ public final class ServiceInstanceDynamicSqlSupport {
   public static final SqlColumn<String> host = serviceInstance.host;
 
   @Generated("org.mybatis.generator.api.MyBatisGenerator")
-  public static final SqlColumn<Short> port = serviceInstance.port;
+  public static final SqlColumn<Integer> port = serviceInstance.port;
 
   @Generated("org.mybatis.generator.api.MyBatisGenerator")
   public static final SqlColumn<String> metadata = serviceInstance.metadata;
@@ -59,7 +59,7 @@ public final class ServiceInstanceDynamicSqlSupport {
 
     public final SqlColumn<String> host = column("`host`", JDBCType.VARCHAR);
 
-    public final SqlColumn<Short> port = column("port", JDBCType.SMALLINT);
+    public final SqlColumn<Integer> port = column("port", JDBCType.INTEGER);
 
     public final SqlColumn<String> metadata = column("metadata", JDBCType.VARCHAR);
 

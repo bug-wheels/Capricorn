@@ -15,6 +15,7 @@ import com.github.bw.capricorn.server.endpoint.infrastructure.mapper.ServiceInst
 import com.github.bw.capricorn.server.endpoint.infrastructure.model.Datacenter;
 import com.github.bw.capricorn.server.endpoint.infrastructure.model.Namespace;
 import com.github.bw.capricorn.server.endpoint.util.Preconditions;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,44 @@ public class MyBatisServerServiceRegistry implements DiscoveryRegistry<Registrat
 
   @Override
   public void register(Registration registration) {
+    try (SqlSession session = sqlSessionFactory.openSession()) {
+      DatacenterMapper datacenterMapper = session.getMapper(DatacenterMapper.class);
+      NamespaceMapper namespaceMapper = session.getMapper(NamespaceMapper.class);
+      ServiceInstanceMapper serviceInstanceMapper = session.getMapper(ServiceInstanceMapper.class);
 
+      Optional<Datacenter> datacenter = datacenterMapper.selectOne(
+          c -> c.where(DatacenterDynamicSqlSupport.name, SqlBuilder.isEqualTo(registration.getDatacenter())));
+      Preconditions.checkArgument(datacenter.isPresent(), "datacenter 不存在");
+
+      int dcId = datacenter.get().getId();
+
+      Optional<Namespace> namespace = namespaceMapper.selectOne(
+          c -> c.where(NamespaceDynamicSqlSupport.name, SqlBuilder.isEqualTo(registration.getNamespace()),
+              SqlBuilder.and(NamespaceDynamicSqlSupport.dcId, SqlBuilder.isEqualTo(dcId))));
+      Preconditions.checkArgument(namespace.isPresent(), "namespace 不存在");
+
+      int nsId = namespace.get().getId();
+
+      Date now = new Date();
+
+      // TODO 此处应该先校验存在不存在，不存在才能插入记录
+
+      com.github.bw.capricorn.server.endpoint.infrastructure.model.ServiceInstance serviceInstance = new com.github.bw.capricorn.server.endpoint.infrastructure.model.ServiceInstance();
+      serviceInstance.setDcId(dcId);
+      serviceInstance.setNsId(nsId);
+      serviceInstance.setServiceId(registration.getServiceInstance().getServiceId());
+      serviceInstance.setHost(registration.getServiceInstance().getHost());
+      serviceInstance.setPort(registration.getServiceInstance().getPort());
+      serviceInstance.setMetadata(JSON.toJSONString(registration.getServiceInstance().getMetadata()));
+      serviceInstance.setLastHeartbeatTime(now);
+      serviceInstance.setCreateTime(now);
+      serviceInstance.setUpdateTime(now);
+      serviceInstanceMapper.insertSelective(serviceInstance);
+      session.commit();
+    } catch (Exception e) {
+      logger.error("剔除服务信息异常 Registration:{}", registration, e);
+      throw e;
+    }
   }
 
   @Override

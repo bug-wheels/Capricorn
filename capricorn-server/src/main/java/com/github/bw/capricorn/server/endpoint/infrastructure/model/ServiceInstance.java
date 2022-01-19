@@ -24,7 +24,7 @@ public class ServiceInstance {
   private String host;
 
   @Generated("org.mybatis.generator.api.MyBatisGenerator")
-  private Short port;
+  private Integer port;
 
   @Generated("org.mybatis.generator.api.MyBatisGenerator")
   private String metadata;
@@ -99,12 +99,12 @@ public class ServiceInstance {
   }
 
   @Generated("org.mybatis.generator.api.MyBatisGenerator")
-  public Short getPort() {
+  public Integer getPort() {
     return port;
   }
 
   @Generated("org.mybatis.generator.api.MyBatisGenerator")
-  public void setPort(Short port) {
+  public void setPort(Integer port) {
     this.port = port;
   }
 

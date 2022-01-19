@@ -80,7 +80,7 @@ public interface ServiceInstanceMapper {
       @Result(column = "instance_id", property = "instanceId", jdbcType = JdbcType.VARCHAR),
       @Result(column = "service_id", property = "serviceId", jdbcType = JdbcType.VARCHAR),
       @Result(column = "host", property = "host", jdbcType = JdbcType.VARCHAR),
-      @Result(column = "port", property = "port", jdbcType = JdbcType.SMALLINT),
+      @Result(column = "port", property = "port", jdbcType = JdbcType.INTEGER),
       @Result(column = "metadata", property = "metadata", jdbcType = JdbcType.VARCHAR),
       @Result(column = "last_heartbeat_time", property = "lastHeartbeatTime", jdbcType = JdbcType.TIMESTAMP),
       @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
