@@ -4,5 +4,8 @@ spring:
   profiles:
     active: mysql
 
+capricorn:
+  banner: true
+
 server:
   port: 23333

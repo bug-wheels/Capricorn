@@ -1,7 +1,3 @@
-create database capricorn default character set utf8mb4 collate utf8mb4_unicode_ci;
-use capricorn;
-
-drop table if exists datacenter;
 create table datacenter (
   id int unsigned auto_increment primary key,
   name varchar(60) not null unique comment '名称',
@@ -11,7 +7,6 @@ create table datacenter (
   update_time datetime default current_timestamp on update current_timestamp comment '更新时间'
 ) engine = innodb character set utf8mb4 comment ='datacenter 配置';
 
-drop table if exists namespace;
 create table namespace (
   id int unsigned auto_increment primary key,
   dc_id int unsigned comment '数据中心 id',
@@ -21,7 +16,6 @@ create table namespace (
   update_time datetime default current_timestamp on update current_timestamp comment '更新时间'
 ) engine = innodb character set utf8mb4 comment ='namespace 配置';
 
-drop table if exists service_instance;
 create table service_instance (
   id int unsigned auto_increment primary key,
   dc_id int unsigned comment '数据中心 id',
@@ -29,7 +23,7 @@ create table service_instance (
   instance_id varchar(64) unique,
   service_id varchar(64),
   host varchar(15) not null,
-  port SMALLINT unsigned not null,
+  port int unsigned not null,
   metadata varchar(100) null comment '描述',
   last_heartbeat_time datetime default current_timestamp comment '最后心跳时间',
   create_time datetime default current_timestamp comment '创建时间',

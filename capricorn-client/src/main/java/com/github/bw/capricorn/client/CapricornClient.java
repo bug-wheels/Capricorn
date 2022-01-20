@@ -1,8 +1,8 @@
 package com.github.bw.capricorn.client;
 
 import com.github.bw.capricorn.client.util.ClientGenerator;
-import com.github.bw.capricorn.commons.DefaultServiceInstance;
 import com.github.bw.capricorn.commons.Registration;
+import com.github.bw.capricorn.commons.ServiceInstance;
 import java.util.List;
 
 public class CapricornClient {
@@ -21,7 +21,7 @@ public class CapricornClient {
     ClientGenerator.executeSync(capricornApiClient.deregister(datacenter, namespace, instanceId));
   }
 
-  public List<DefaultServiceInstance> instances(String datacenter, String namespace, String serviceId) {
+  public List<ServiceInstance> instances(String datacenter, String namespace, String serviceId) {
     return ClientGenerator.executeSync(capricornApiClient.instances(datacenter, namespace, serviceId)).getInstances();
   }
 }

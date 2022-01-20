@@ -3,12 +3,12 @@ package com.github.bw.capricorn.server.endpoint;
 
 import com.github.bw.capricorn.commons.DefaultServiceInstance;
 import com.github.bw.capricorn.commons.Registration;
-import com.github.bw.capricorn.commons.ServiceRegistry;
+import com.github.bw.capricorn.commons.ServiceInstance;
 import com.github.bw.capricorn.commons.response.CommonResponse;
+import com.github.bw.capricorn.commons.response.InstanceHealthStatus;
 import com.github.bw.capricorn.commons.response.InstanceRegisterResponse;
 import com.github.bw.capricorn.commons.response.QueryInstanceResponse;
-import java.util.Arrays;
-import java.util.UUID;
+import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/dc/ns/instance")
 public class RegisterEndPoint {
 
-  private final ServiceRegistry<Registration> serviceRegistry;
+  private final DiscoveryRegistry<Registration> discoveryRegistry;
 
-  public RegisterEndPoint(ServiceRegistry<Registration> serviceRegistry) {
-    this.serviceRegistry = serviceRegistry;
+  public RegisterEndPoint(DiscoveryRegistry<Registration> discoveryRegistry) {
+    this.discoveryRegistry = discoveryRegistry;
   }
 
   /**
@@ -36,7 +36,7 @@ public class RegisterEndPoint {
    */
   @PostMapping
   public InstanceRegisterResponse register(@RequestBody Registration registration) {
-    serviceRegistry.register(registration);
+    discoveryRegistry.register(registration);
     return new InstanceRegisterResponse(registration.getServiceInstance().getInstanceId());
   }
 
@@ -47,7 +47,7 @@ public class RegisterEndPoint {
   public CommonResponse deregister(@PathVariable String dc, @PathVariable String ns,
       @PathVariable String instanceId) {
     Registration registration = new Registration(dc, ns, new DefaultServiceInstance(instanceId));
-    serviceRegistry.deregister(registration);
+    discoveryRegistry.deregister(registration);
     return new CommonResponse();
   }
 
@@ -58,7 +58,7 @@ public class RegisterEndPoint {
   public CommonResponse heartbeat(@PathVariable String dc, @PathVariable String ns,
       @PathVariable String instanceId) {
     Registration registration = new Registration(dc, ns, new DefaultServiceInstance(instanceId));
-    serviceRegistry.setStatus(registration, "up");
+    discoveryRegistry.setStatus(registration, InstanceHealthStatus.UP);
     return new CommonResponse();
   }
 
@@ -67,13 +67,16 @@ public class RegisterEndPoint {
    */
   @GetMapping
   public QueryInstanceResponse instances(@RequestParam String dc, @RequestParam String ns,
-      @RequestParam String serviceId) {
-    DefaultServiceInstance instanceInfo = new DefaultServiceInstance();
-    instanceInfo.setInstanceId(UUID.randomUUID().toString());
-    instanceInfo.setInstanceId(serviceId);
-    instanceInfo.setHost("127.0.0.1");
-    instanceInfo.setPort(24880);
-    return new QueryInstanceResponse(Arrays.asList(instanceInfo));
+      @RequestParam String serviceId, @RequestParam(required = false) Byte healthStatus) {
+
+    InstanceHealthStatus instanceHealthStatus = null;
+    if (healthStatus != null) {
+      instanceHealthStatus = InstanceHealthStatus.getByStatus(healthStatus);
+    }
+
+    List<ServiceInstance> instances = discoveryRegistry.instances(dc, ns, serviceId, instanceHealthStatus);
+
+    return new QueryInstanceResponse(instances);
   }
 
 }

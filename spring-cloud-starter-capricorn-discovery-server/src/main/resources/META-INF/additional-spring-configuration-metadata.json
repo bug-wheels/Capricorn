@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "capricorn.banner",
+      "type": "java.lang.Boolean",
+      "description": "是否开启 banner.",
+      "defaultValue": "true"
+    }
+  ]
+}
